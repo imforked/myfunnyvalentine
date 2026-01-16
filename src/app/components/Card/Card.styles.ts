@@ -3,6 +3,8 @@ import { styled, css } from "styled-components";
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
 
+const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -17,7 +19,7 @@ export const Container = styled.div`
   width: 400px;
   height: 560px;
   border-radius: ${CARD_BORDER_RADIUS}px;
-  perspective: 800px;
+  perspective: 900px;
 
   &:hover {
     cursor: pointer;
@@ -42,6 +44,6 @@ export const Front = styled.div<{
   ${({ $showFront }) =>
     !$showFront &&
     css`
-      transform: rotateY(180deg);
+      transform: rotateY(180deg) rotateX(2deg) rotateZ(${randomTilt()}deg);
     `}
 `;
