@@ -9,15 +9,17 @@ export const Card = () => {
   return (
     <S.Wrapper>
       <S.Container onClick={() => setShowFront((prevState) => !prevState)}>
-        <S.Flipper $showFront={showFront}>
-          <S.Front>
-            <S.FrontContent>{/* stickers go here */}</S.FrontContent>
-          </S.Front>
+        <S.DriftLayer>
+          <S.Flipper $showFront={showFront}>
+            <S.Front>
+              <S.FrontContent>{/* stickers go here */}</S.FrontContent>
+            </S.Front>
 
-          <S.Back>
-            <S.BackContent>{/* back design */}</S.BackContent>
-          </S.Back>
-        </S.Flipper>
+            <S.Back>
+              <S.BackContent>{/* back design */}</S.BackContent>
+            </S.Back>
+          </S.Flipper>
+        </S.DriftLayer>
       </S.Container>
     </S.Wrapper>
   );
