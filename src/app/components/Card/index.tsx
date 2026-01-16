@@ -5,22 +5,19 @@ import * as S from "./Card.styles";
 
 export const Card = () => {
   const [showFront, setShowFront] = useState(true);
-  const [showFrontShadow, setShowFrontShadow] = useState(true);
-
-  const handleFlip = () => {
-    setShowFront(!showFront);
-    // setTimeout(() => {
-    //   setShowFrontShadow(!showFront);
-    // }, S.FLIP_TIME_IN_MS / 1.75);
-  };
 
   return (
     <S.Wrapper>
-      <S.Container onClick={handleFlip}>
-        <S.Front
-          $showFront={showFront}
-          $showFrontShadow={showFrontShadow}
-        ></S.Front>
+      <S.Container onClick={() => setShowFront((prevState) => !prevState)}>
+        <S.Flipper $showFront={showFront}>
+          <S.Front>
+            <S.FrontContent>{/* stickers go here */}</S.FrontContent>
+          </S.Front>
+
+          <S.Back>
+            <S.BackContent>{/* back design */}</S.BackContent>
+          </S.Back>
+        </S.Flipper>
       </S.Container>
     </S.Wrapper>
   );
