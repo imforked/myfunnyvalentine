@@ -11,11 +11,11 @@ export const Card = () => {
       <S.Container onClick={() => setShowFront((prevState) => !prevState)}>
         <S.DriftLayer>
           <S.Flipper $showFront={showFront}>
-            <S.Front>
+            <S.Front $showFront={showFront}>
               <S.FrontContent>{/* stickers go here */}</S.FrontContent>
             </S.Front>
 
-            <S.Back>
+            <S.Back $showFront={showFront}>
               <S.BackContent>{/* back design */}</S.BackContent>
             </S.Back>
           </S.Flipper>

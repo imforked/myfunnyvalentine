@@ -1,4 +1,4 @@
-import { styled, keyframes } from "styled-components";
+import { styled, keyframes, css } from "styled-components";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
@@ -89,17 +89,19 @@ export const Flipper = styled.div<{ $showFront: boolean }>`
       : `rotateY(180deg) rotateX(2deg) rotateZ(${randomTilt()}deg)`};
 `;
 
-const Face = styled.div`
+const Face = styled.div<{ $showFront: boolean }>`
   position: absolute;
   inset: 0;
   border-radius: ${CARD_BORDER_RADIUS}px;
   backface-visibility: hidden;
+  box-shadow: ${({ $showFront }) => ($showFront ? "10px" : "0px")} 5px 20px
+    rgba(0, 0, 0, 0.5);
+  transition: box-shadow ${FLIP_TIME_IN_MS}ms;
 `;
 
 export const Front = styled(Face)`
   background: linear-gradient(145deg, #ff4d4d, #cc0000);
   border: 2px solid #900;
-  box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
 export const Back = styled(Face)`
