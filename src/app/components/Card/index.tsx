@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import * as S from "./Card.styles";
+import { Sticker } from "../Sticker";
+import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
 
 export const Card = () => {
   const [showFront, setShowFront] = useState(true);
@@ -12,7 +14,11 @@ export const Card = () => {
         <S.DriftLayer>
           <S.Flipper $showFront={showFront}>
             <S.Front $showFront={showFront}>
-              <S.FrontContent>{/* stickers go here */}</S.FrontContent>
+              <S.FrontContent>
+                {STICKER_CONTEXT.map((sticker, index) => {
+                  return <Sticker key={index} {...sticker} />;
+                })}
+              </S.FrontContent>
             </S.Front>
 
             <S.Back $showFront={showFront}>
