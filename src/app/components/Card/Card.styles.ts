@@ -1,4 +1,4 @@
-import { styled, keyframes, css } from "styled-components";
+import { styled, keyframes } from "styled-components";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
