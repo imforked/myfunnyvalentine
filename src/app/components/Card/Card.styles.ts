@@ -118,3 +118,10 @@ const Content = styled.div`
 export const FrontContent = styled(Content)``;
 
 export const BackContent = styled(Content)``;
+
+export const InteractiveStickersContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+`;
