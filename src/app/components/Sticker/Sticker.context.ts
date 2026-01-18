@@ -1,4 +1,9 @@
-import { StickerProps as StickerContext } from "./Sticker.props";
+import { StickerProps } from "./Sticker.props";
+
+type StickerContext = Omit<
+  StickerProps,
+  "index" | "onClick" | "isInteractiveSticker"
+>;
 
 export const STICKER_CONTEXT: StickerContext[] = [
   {
@@ -8,24 +13,24 @@ export const STICKER_CONTEXT: StickerContext[] = [
       width: 100,
       height: 100,
     },
-    coordinates: { x: "right: -10px;", y: "top: 50px;" },
+    coordinates: { x: -10, y: 80 },
   },
   {
     img: {
       src: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjc5MC1udW5ueS01Mi5wbmc.png",
-      alt: "img 1 wow",
+      alt: "img 2 wow",
       width: 100,
       height: 100,
     },
-    coordinates: { x: "left: -20px;", y: "top: 70px;" },
+    coordinates: { x: 305, y: 40 },
   },
   {
     img: {
       src: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjc5MC1udW5ueS01Mi5wbmc.png",
-      alt: "img 1 wow",
+      alt: "img 3 wow",
       width: 100,
       height: 100,
     },
-    coordinates: { x: "left: 50px;", y: "bottom: 50px;" },
+    coordinates: { x: 50, y: 400 },
   },
 ] as const;
