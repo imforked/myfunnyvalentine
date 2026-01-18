@@ -1,4 +1,5 @@
 import { StickerProps } from "./Sticker.props";
+import shitpost from "../../../../public/shitpost.png";
 
 type StickerContext = Omit<
   StickerProps,
@@ -8,8 +9,8 @@ type StickerContext = Omit<
 export const STICKER_CONTEXT: StickerContext[] = [
   {
     img: {
-      src: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjc5MC1udW5ueS01Mi5wbmc.png",
-      alt: "img 1 wow",
+      src: shitpost,
+      alt: "Literally us",
       width: 100,
       height: 100,
     },
@@ -17,8 +18,8 @@ export const STICKER_CONTEXT: StickerContext[] = [
   },
   {
     img: {
-      src: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjc5MC1udW5ueS01Mi5wbmc.png",
-      alt: "img 2 wow",
+      src: shitpost,
+      alt: "Reptilian desire",
       width: 100,
       height: 100,
     },
@@ -26,8 +27,8 @@ export const STICKER_CONTEXT: StickerContext[] = [
   },
   {
     img: {
-      src: "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjc5MC1udW5ueS01Mi5wbmc.png",
-      alt: "img 3 wow",
+      src: shitpost,
+      alt: "My queeeeeennnn",
       width: 100,
       height: 100,
     },
