@@ -34,4 +34,13 @@ export const STICKER_CONTEXT: StickerContext[] = [
     },
     coordinates: { x: 50, y: 400 },
   },
+    {
+    img: {
+      src: shitpost,
+      alt: "mmmmmWAH!",
+      width: 100,
+      height: 100,
+    },
+    coordinates: { x: 280, y: 440 },
+  },
 ] as const;
