@@ -20,9 +20,7 @@ export const Sticker = ({
         onClick();
       }}
     >
-      {/* <Image {...img} /> */}
-      {/* TODO: use Next Image */}
-      <img {...img} />
+      <Image {...img} />
     </S.Container>
   );
 };
