@@ -1,5 +1,11 @@
+"use client"
+
 import { Card } from "./components/Card";
 
 export default function Home() {
-  return <Card />;
+  const stickerClickHandler = () => {
+    console.log("lmao");
+  };
+
+  return <Card onStickerClick={stickerClickHandler} />;
 }
