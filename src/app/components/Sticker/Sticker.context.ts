@@ -6,41 +6,46 @@ type StickerContext = Omit<
   "index" | "onClick" | "isInteractiveSticker"
 >;
 
+const STICKER_DIMENSIONS = {
+  width: 75,
+  height: 75,
+};
+
 export const STICKER_CONTEXT: StickerContext[] = [
   {
     img: {
       src: shitpost,
       alt: "Literally us",
-      width: 100,
-      height: 100,
+      width: STICKER_DIMENSIONS.width,
+      height: STICKER_DIMENSIONS.height,
     },
-    coordinates: { x: -10, y: 80 },
+    coordinates: { x: -20, y: 80 },
   },
   {
     img: {
       src: shitpost,
       alt: "Reptilian desire",
-      width: 100,
-      height: 100,
+      width: STICKER_DIMENSIONS.width,
+      height: STICKER_DIMENSIONS.height,
     },
-    coordinates: { x: 305, y: 40 },
+    coordinates: { x: 340, y: 40 },
   },
   {
     img: {
       src: shitpost,
       alt: "My queeeeeennnn",
-      width: 100,
-      height: 100,
+      width: STICKER_DIMENSIONS.width,
+      height: STICKER_DIMENSIONS.height,
     },
-    coordinates: { x: 50, y: 400 },
+    coordinates: { x: 40, y: 440 },
   },
-    {
+  {
     img: {
       src: shitpost,
       alt: "mmmmmWAH!",
-      width: 100,
-      height: 100,
+      width: STICKER_DIMENSIONS.width,
+      height: STICKER_DIMENSIONS.height,
     },
-    coordinates: { x: 280, y: 440 },
+    coordinates: { x: 300, y: 460 },
   },
 ] as const;
