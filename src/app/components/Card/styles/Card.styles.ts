@@ -74,7 +74,9 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   box-shadow: ${({ $showFront, $isBeingTouched }) =>
       $showFront && !$isBeingTouched ? "10px" : "0px"}
     5px 20px rgba(0, 0, 0, 0.5);
-  transition: box-shadow ${FLIP_TIME_IN_MS}ms;
+  transition: box-shadow
+    ${({ $isBeingTouched }) =>
+      $isBeingTouched ? PRESS_ANIMATION_IN_MS : FLIP_TIME_IN_MS}ms;
 `;
 
 export const Front = styled(Face)`
