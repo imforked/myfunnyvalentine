@@ -78,10 +78,11 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   background-position: center;
   background-repeat: no-repeat;
 
-  filter: ${({ $showFront, $isBeingTouched }) =>
-    $showFront && !$isBeingTouched
-      ? "drop-shadow(10px 5px 20px rgba(0, 0, 0, 0.5))"
-      : "none"};
+filter: ${({ $showFront, $isBeingTouched }) =>
+  $showFront && !$isBeingTouched
+    ? "drop-shadow(4px 3px 10px rgba(0, 0, 0, 0.25))"
+    : "none"};
+
 
   transition: filter
     ${({ $isBeingTouched }) =>
