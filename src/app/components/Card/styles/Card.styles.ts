@@ -71,10 +71,13 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   inset: 0;
   border-radius: ${CARD_BORDER_RADIUS}px;
   backface-visibility: hidden;
-  box-shadow: ${({ $showFront, $isBeingTouched }) =>
-      $showFront && !$isBeingTouched ? "10px" : "0px"}
-    5px 20px rgba(0, 0, 0, 0.5);
-  transition: box-shadow
+
+  filter: ${({ $showFront, $isBeingTouched }) =>
+    $showFront && !$isBeingTouched
+      ? "drop-shadow(10px 5px 20px rgba(0, 0, 0, 0.5))"
+      : "none"};
+
+  transition: filter
     ${({ $isBeingTouched }) =>
       $isBeingTouched ? PRESS_ANIMATION_IN_MS : FLIP_TIME_IN_MS}ms;
 `;
