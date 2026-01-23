@@ -69,14 +69,13 @@ export const Card = ({ onStickerClick }: CardProps) => {
         onClick={clickHandler}
         $isBeingTouched={isBeingTouched}
       >
+        {showFront && (
+          <S.InteractiveStickersContainer>
+            <Stickers isInteractiveStickers />
+          </S.InteractiveStickersContainer>
+        )}
         <S.ShakeLayer $shake={featuresUnlocked}>
           <S.DriftLayer>
-            {showFront && (
-              <S.InteractiveStickersContainer>
-                <Stickers isInteractiveStickers />
-              </S.InteractiveStickersContainer>
-            )}
-
             <S.Flipper $showFront={showFront}>
               <S.Front $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.FrontContent>
