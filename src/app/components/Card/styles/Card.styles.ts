@@ -1,5 +1,6 @@
 import { styled, css } from "styled-components";
 import { drift, shake } from "./animations";
+import backgroundImg from "../../../../../public/card-background.png";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
@@ -13,13 +14,13 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background: yellow;
+  background: #dcd8b0;
 `;
 
 export const Container = styled.div<{ $isBeingTouched: boolean }>`
   position: relative;
-  width: 400px;
-  height: 560px;
+  width: 415px;
+  height: 609px;
   border-radius: ${CARD_BORDER_RADIUS}px;
   perspective: 900px;
   transition: transform ${PRESS_ANIMATION_IN_MS}ms ease-in-out;
@@ -72,6 +73,11 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   border-radius: ${CARD_BORDER_RADIUS}px;
   backface-visibility: hidden;
 
+  background-image: url(${backgroundImg.src});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   filter: ${({ $showFront, $isBeingTouched }) =>
     $showFront && !$isBeingTouched
       ? "drop-shadow(10px 5px 20px rgba(0, 0, 0, 0.5))"
@@ -83,12 +89,9 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
 `;
 
 export const Front = styled(Face)`
-  background: linear-gradient(145deg, #ff4d4d, #cc0000);
-  border: 2px solid #900;
 `;
 
 export const Back = styled(Face)`
-  background: linear-gradient(145deg, #777, #4a4a4a);
   transform: rotateY(180deg);
 `;
 
