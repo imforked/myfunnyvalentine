@@ -7,7 +7,7 @@ export const Container = styled.div<{
   $isInteractiveSticker: boolean;
 }>`
   position: absolute;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.18));
   border-radius: 100px;
   ${({ $coordinates }) =>
     $coordinates &&

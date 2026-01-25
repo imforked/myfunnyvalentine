@@ -1,41 +1,39 @@
 import { StickerProps } from "./Sticker.props";
 import shitpost from "../../../../public/shitpost.png";
+import love from "../../../../public/gimme-love.png";
+import snack from "../../../../public/gimme-snack.png";
+import dick from "../../../../public/gimme-dick.png";
 
 type StickerContext = Omit<
   StickerProps,
   "index" | "onClick" | "isInteractiveSticker"
 >;
 
-const STICKER_DIMENSIONS = {
-  width: 75,
-  height: 75,
-};
-
 export const STICKER_CONTEXT: StickerContext[] = [
   {
     img: {
-      src: shitpost,
+      src: love,
       alt: "Literally us",
-      width: STICKER_DIMENSIONS.width,
-      height: STICKER_DIMENSIONS.height,
+      width: 75,
+      height: 69.6,
     },
-    coordinates: { x: -20, y: 80 },
+    coordinates: { x: 0, y: 80 },
   },
   {
     img: {
-      src: shitpost,
+      src: snack,
       alt: "Reptilian desire",
-      width: STICKER_DIMENSIONS.width,
-      height: STICKER_DIMENSIONS.height,
+      width: 75,
+      height: 76.5,
     },
     coordinates: { x: 340, y: 40 },
   },
   {
     img: {
-      src: shitpost,
+      src: dick,
       alt: "My queeeeeennnn",
-      width: STICKER_DIMENSIONS.width,
-      height: STICKER_DIMENSIONS.height,
+      width: 75,
+      height: 111.5,
     },
     coordinates: { x: 40, y: 440 },
   },
@@ -43,8 +41,8 @@ export const STICKER_CONTEXT: StickerContext[] = [
     img: {
       src: shitpost,
       alt: "mmmmmWAH!",
-      width: STICKER_DIMENSIONS.width,
-      height: STICKER_DIMENSIONS.height,
+      width: 75,
+      height: 75,
     },
     coordinates: { x: 300, y: 460 },
   },
