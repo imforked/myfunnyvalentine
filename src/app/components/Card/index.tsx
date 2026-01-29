@@ -9,11 +9,13 @@ import { Tabs } from "../Tabs";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
+const TAB_REVEAL_DELAY = 500;
 
 export const Card = ({ onStickerClick }: CardProps) => {
   const [showFront, setShowFront] = useState(true);
   const [isBeingTouched, setIsBeingTouched] = useState(false);
   const [featuresUnlocked, setFeaturesUnlocked] = useState(false);
+  const [shakeCard, setShakeCard] = useState(false);
 
   const timeoutRef = useRef<number | null>(null);
   const ignoreNextClickRef = useRef(false);
@@ -31,8 +33,14 @@ export const Card = ({ onStickerClick }: CardProps) => {
       setIsBeingTouched(true);
 
       setTimeout(() => {
-        setFeaturesUnlocked(true);
+        setTimeout(
+          () => {
+            setFeaturesUnlocked(true);
+          },
+          S.PRESS_ANIMATION_IN_MS + SHAKE_DURATION + TAB_REVEAL_DELAY,
+        );
 
+        setShakeCard(true);
         // Ignore the next clicks that follow a long press
         ignoreNextClickRef.current = true;
       }, S.PRESS_ANIMATION_IN_MS + SHAKE_DURATION);
@@ -75,7 +83,7 @@ export const Card = ({ onStickerClick }: CardProps) => {
             <Stickers isInteractiveStickers />
           </S.InteractiveStickersContainer>
         )} */}
-        <S.ShakeLayer $shake={featuresUnlocked}>
+        <S.ShakeLayer $shake={shakeCard}>
           <S.DriftLayer>
             <S.Flipper $showFront={showFront}>
               <S.Front $showFront={showFront} $isBeingTouched={isBeingTouched}>
