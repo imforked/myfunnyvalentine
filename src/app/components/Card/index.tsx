@@ -2,9 +2,10 @@
 
 import { useState, useRef } from "react";
 import * as S from "./styles/Card.styles";
-import { Sticker } from "../Sticker";
-import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
+// import { Sticker } from "../Sticker";
+// import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
 import { CardProps } from "./Card.types";
+import { Tabs } from "../Tabs";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -46,20 +47,20 @@ export const Card = ({ onStickerClick }: CardProps) => {
     }
   };
 
-  const Stickers = ({
-    isInteractiveStickers,
-  }: {
-    isInteractiveStickers: boolean;
-  }) =>
-    STICKER_CONTEXT.map((sticker, index) => (
-      <Sticker
-        key={index}
-        {...sticker}
-        index={index}
-        onClick={onStickerClick}
-        isInteractiveSticker={isInteractiveStickers}
-      />
-    ));
+  // const Stickers = ({
+  //   isInteractiveStickers,
+  // }: {
+  //   isInteractiveStickers: boolean;
+  // }) =>
+  //   STICKER_CONTEXT.map((sticker, index) => (
+  //     <Sticker
+  //       key={index}
+  //       {...sticker}
+  //       index={index}
+  //       onClick={onStickerClick}
+  //       isInteractiveSticker={isInteractiveStickers}
+  //     />
+  //   ));
 
   return (
     <S.Wrapper>
@@ -69,19 +70,21 @@ export const Card = ({ onStickerClick }: CardProps) => {
         onClick={clickHandler}
         $isBeingTouched={isBeingTouched}
       >
-        {showFront && (
+        {/* {showFront && (
           <S.InteractiveStickersContainer>
             <Stickers isInteractiveStickers />
           </S.InteractiveStickersContainer>
-        )}
+        )} */}
         <S.ShakeLayer $shake={featuresUnlocked}>
           <S.DriftLayer>
             <S.Flipper $showFront={showFront}>
               <S.Front $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.FrontContent>
-                  <Stickers isInteractiveStickers={false} />
+                  {/* <Stickers isInteractiveStickers={false} /> */}
                 </S.FrontContent>
               </S.Front>
+
+              <Tabs reveal={featuresUnlocked} />
 
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>

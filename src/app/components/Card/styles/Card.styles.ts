@@ -1,6 +1,7 @@
 import { styled, css } from "styled-components";
 import { drift, shake } from "./animations";
 import backgroundImg from "../../../../../public/card-background.png";
+import front from "../../../../../public/front-1.png";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
@@ -72,11 +73,11 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   inset: 0;
   border-radius: ${CARD_BORDER_RADIUS}px;
   backface-visibility: hidden;
-
-  background-image: url(${backgroundImg.src});
+  background-image: url(${front.src});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 2;
 
 filter: ${({ $showFront, $isBeingTouched }) =>
   $showFront && !$isBeingTouched
