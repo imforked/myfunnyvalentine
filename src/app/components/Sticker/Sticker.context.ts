@@ -1,8 +1,8 @@
 import { StickerProps } from "./Sticker.props";
-import shitpost from "../../../../public/shitpost.png";
 import love from "../../../../public/gimme-love.png";
 import snack from "../../../../public/gimme-snack.png";
 import dick from "../../../../public/gimme-dick.png";
+import mmmWAH from "../../../../public/mmmWAH.png";
 
 type StickerContext = Omit<
   StickerProps,
@@ -39,11 +39,11 @@ export const STICKER_CONTEXT: StickerContext[] = [
   },
   {
     img: {
-      src: shitpost,
+      src: mmmWAH,
       alt: "mmmmmWAH!",
-      width: 75,
-      height: 75,
+      width: 100,
+      height: 100,
     },
-    coordinates: { x: 300, y: 460 },
+    coordinates: { x: 300, y: 500 },
   },
 ] as const;
