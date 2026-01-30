@@ -2,20 +2,27 @@
 
 import { useState, useRef } from "react";
 import * as S from "./styles/Card.styles";
-import { CardProps } from "./Card.types";
 import { Tabs } from "../Tabs";
 import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
 import { Sticker } from "../Sticker";
+import {
+  StickerAction,
+  STICKER_ACTION,
+  TOOLTIP,
+  ANIMATION,
+} from "../Sticker/Sticker.types";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
 const TAB_REVEAL_DELAY = 500;
 
-export const Card = ({ onStickerClick }: CardProps) => {
+export const Card = () => {
   const [showFront, setShowFront] = useState(true);
   const [isBeingTouched, setIsBeingTouched] = useState(false);
   const [featuresUnlocked, setFeaturesUnlocked] = useState(false);
   const [shakeCard, setShakeCard] = useState(false);
+  const [activeTooltip, setActiveTooltip] = useState<TOOLTIP | null>(null);
+  const [playAnimation, setPlayAnimation] = useState<ANIMATION | null>(null);
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -65,6 +72,24 @@ export const Card = ({ onStickerClick }: CardProps) => {
     clearAllTimeouts();
   };
 
+  const handleStickerAction = (action: StickerAction) => {
+    switch (action.type) {
+      case STICKER_ACTION.OPEN_TOOLTIP:
+        setActiveTooltip(action.tooltipId);
+        break;
+
+      case STICKER_ACTION.PLAY_ANIMATION:
+        setPlayAnimation(action.animation);
+        break;
+
+      case STICKER_ACTION.NONE:
+      default:
+        break;
+    }
+  };
+
+  console.log(playAnimation)
+
   const Stickers = ({
     isInteractiveStickers,
   }: {
@@ -75,8 +100,8 @@ export const Card = ({ onStickerClick }: CardProps) => {
         key={index}
         {...sticker}
         index={index}
-        onClick={onStickerClick}
         isInteractiveSticker={isInteractiveStickers}
+        onClick={() => handleStickerAction(sticker.action)}
       />
     ));
 

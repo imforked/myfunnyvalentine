@@ -1,13 +1,13 @@
 import * as S from "./Sticker.styles";
-import { StickerProps } from "./Sticker.props";
+import { StickerProps } from "./Sticker.types";
 import Image from "next/image";
 
 export const Sticker = ({
   img,
   coordinates,
   index,
-  onClick,
   isInteractiveSticker,
+  onClick,
 }: StickerProps) => {
   return (
     <S.Container

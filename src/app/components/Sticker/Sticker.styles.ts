@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { StickerCoordinates } from "./Sticker.props";
+import { StickerCoordinates } from "./Sticker.types";
 
 export const Container = styled.div<{
   $coordinates: StickerCoordinates;
