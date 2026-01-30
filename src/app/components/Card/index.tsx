@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 import * as S from "./styles/Card.styles";
 import { CardProps } from "./Card.types";
 import { Tabs } from "../Tabs";
+import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
+import { Sticker } from "../Sticker";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -63,6 +65,21 @@ export const Card = ({ onStickerClick }: CardProps) => {
     clearAllTimeouts();
   };
 
+  const Stickers = ({
+    isInteractiveStickers,
+  }: {
+    isInteractiveStickers: boolean;
+  }) =>
+    STICKER_CONTEXT.map((sticker, index) => (
+      <Sticker
+        key={index}
+        {...sticker}
+        index={index}
+        onClick={onStickerClick}
+        isInteractiveSticker={isInteractiveStickers}
+      />
+    ));
+
   return (
     <S.Wrapper>
       <S.Container
@@ -74,6 +91,12 @@ export const Card = ({ onStickerClick }: CardProps) => {
         onClick={clickHandler}
         $isBeingTouched={isBeingTouched}
       >
+        {!showFront && (
+          <S.InteractiveStickersContainer>
+            <Stickers isInteractiveStickers />
+          </S.InteractiveStickersContainer>
+        )}
+
         <S.ShakeLayer $shake={shakeCard}>
           <S.DriftLayer>
             <S.Flipper $showFront={showFront}>
@@ -85,7 +108,7 @@ export const Card = ({ onStickerClick }: CardProps) => {
 
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>
-                  <h1>BACK CONTENT GOES HERE</h1>
+                  <Stickers isInteractiveStickers={false} />
                 </S.BackContent>
               </S.Back>
             </S.Flipper>
