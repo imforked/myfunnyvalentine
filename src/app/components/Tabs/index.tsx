@@ -3,27 +3,39 @@ import Image from "next/image";
 import { TabsProps, TabProps } from "./Tabs.types";
 import { TABS_DATA } from "./Tabs.data";
 
-const Tab = ({ index, reveal, coordinates, img }: TabProps) => {
+const clickHandler = () => {
+  console.log("lmao");
+};
+
+const Tab = ({ index, reveal, canClick, coordinates, img }: TabProps) => {
   return (
     <S.AnimateContainer
       $coordinates={{ ...coordinates }}
       $index={index}
       $playAnimation={reveal}
     >
-      <S.HoverContainer>
-        <Image {...img} />
+      <S.HoverContainer $canPlayHoverAnimation={canClick}>
+        <Image
+          onClick={() => {
+            if (canClick) {
+              clickHandler();
+            }
+          }}
+          {...img}
+        />
       </S.HoverContainer>
     </S.AnimateContainer>
   );
 };
 
-export const Tabs = ({ reveal }: TabsProps) => {
+export const Tabs = ({ reveal, canClick }: TabsProps) => {
   return TABS_DATA.map((tab, index) => (
     <Tab
       key={`${tab.img.alt}-${index}`}
       img={tab.img}
       coordinates={tab.coordinates}
       reveal={reveal}
+      canClick={canClick}
       index={index}
     />
   ));

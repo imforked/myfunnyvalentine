@@ -88,8 +88,6 @@ export const Card = () => {
     }
   };
 
-  console.log(playAnimation)
-
   const Stickers = ({
     isInteractiveStickers,
   }: {
@@ -129,7 +127,7 @@ export const Card = () => {
                 <S.FrontContent />
               </S.Front>
 
-              <Tabs reveal={featuresUnlocked} />
+              <Tabs reveal={featuresUnlocked} canClick={showFront} />
 
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>

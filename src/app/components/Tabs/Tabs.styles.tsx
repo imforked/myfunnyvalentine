@@ -12,11 +12,16 @@ const popOut = keyframes`
   }
 `;
 
-export const HoverContainer = styled.div`
+export const HoverContainer = styled.div<{ $canPlayHoverAnimation: boolean }>`
   transition: 200ms;
-  &:hover {
-    transform: translateX(10px);
-  }
+
+  ${({ $canPlayHoverAnimation }) =>
+    $canPlayHoverAnimation &&
+    css`
+      &:hover {
+        transform: translateX(10px);
+      }
+    `}
 `;
 
 export const AnimateContainer = styled.div<{

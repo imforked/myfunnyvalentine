@@ -11,11 +11,13 @@ export type TabProps = {
   coordinates: Coordinates;
   img: Image;
   reveal: boolean;
+  canClick: boolean;
   index: number;
 };
 
-export type TabsData = Omit<TabProps, "index" | "reveal">[];
+export type TabsData = Omit<TabProps, "index" | "reveal" | "canClick">[];
 
 export type TabsProps = {
   reveal: boolean;
+  canClick: boolean;
 };
