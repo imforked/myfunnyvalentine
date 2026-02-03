@@ -5,6 +5,7 @@ import * as S from "./styles/Card.styles";
 import { Tabs } from "../Tabs";
 import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
 import { Sticker } from "../Sticker";
+import { useSendEmail } from "@/app/hooks/useSendEmail";
 import {
   StickerAction,
   STICKER_ACTION,
@@ -23,6 +24,17 @@ export const Card = () => {
   const [shakeCard, setShakeCard] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<TOOLTIP | null>(null);
   const [playAnimation, setPlayAnimation] = useState<ANIMATION | null>(null);
+
+  const { sendEmail, status, isLoading, error } = useSendEmail();
+  // TODO: use this hook like this:
+  // disabled={isLoading}
+  // onClick={() =>
+  //   sendEmail({
+  //     subject: "Hello from Next.js ❤️",
+  //     message: "This email was sent using Resend 🚀",
+  //   })
+  // }
+  //  {status && <p>{status}</p>}
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
