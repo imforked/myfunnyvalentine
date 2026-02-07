@@ -152,9 +152,8 @@ export const Card = () => {
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>
                   {activeForm && (
-                    <Form variant={FORM_TYPE.SNACK} closeForm={closeForm} />
+                    <Form variant={activeForm} closeForm={closeForm} />
                   )}
-
                   <Stickers isInteractiveStickers={false} />
                 </S.BackContent>
               </S.Back>
