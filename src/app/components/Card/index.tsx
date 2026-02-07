@@ -5,13 +5,14 @@ import * as S from "./styles/Card.styles";
 import { Tabs } from "../Tabs";
 import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
 import { Sticker } from "../Sticker";
-import { useSendEmail } from "@/app/hooks/useSendEmail";
+import { Form } from "../Form";
 import {
   StickerAction,
   STICKER_ACTION,
   TOOLTIP,
   ANIMATION,
 } from "../Sticker/Sticker.types";
+import { FORM_TYPE } from "../Form/Form.types";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -24,17 +25,6 @@ export const Card = () => {
   const [shakeCard, setShakeCard] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<TOOLTIP | null>(null);
   const [playAnimation, setPlayAnimation] = useState<ANIMATION | null>(null);
-
-  const { sendEmail, status, isLoading, error } = useSendEmail();
-  // TODO: use this hook like this:
-  // disabled={isLoading}
-  // onClick={() =>
-  //   sendEmail({
-  //     subject: "Hello from Next.js ❤️",
-  //     message: "This email was sent using Resend 🚀",
-  //   })
-  // }
-  //  {status && <p>{status}</p>}
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -143,6 +133,7 @@ export const Card = () => {
 
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>
+                  <Form variant={FORM_TYPE.SNACK} />
                   <Stickers isInteractiveStickers={false} />
                 </S.BackContent>
               </S.Back>
