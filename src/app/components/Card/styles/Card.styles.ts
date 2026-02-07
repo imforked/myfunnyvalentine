@@ -17,13 +17,23 @@ export const Wrapper = styled.div`
   background: #dcd8b0;
 `;
 
-export const Container = styled.div<{ $isBeingTouched: boolean }>`
+export const Container = styled.div<{
+  $isBeingTouched: boolean;
+  $formIsActive: boolean;
+}>`
   position: relative;
   width: 415px;
   height: 609px;
   border-radius: ${CARD_BORDER_RADIUS}px;
   perspective: 900px;
   transition: transform ${PRESS_ANIMATION_IN_MS}ms ease-in-out;
+  pointer-events: auto;
+
+  ${({ $formIsActive }) =>
+    $formIsActive &&
+    css`
+      pointer-events: none;
+    `}
 
   ${({ $isBeingTouched }) =>
     $isBeingTouched &&

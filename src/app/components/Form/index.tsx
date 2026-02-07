@@ -4,7 +4,7 @@ import { FormValues, FORM_FIELD, FormProps } from "./Form.types";
 import { useSendEmail } from "@/app/hooks/useSendEmail";
 import { FORM_FIELDS } from "./Form.data";
 
-export const Form = ({ variant }: FormProps) => {
+export const Form = ({ variant, closeForm }: FormProps) => {
   const {
     register,
     handleSubmit,
@@ -24,6 +24,7 @@ export const Form = ({ variant }: FormProps) => {
 
   return (
     <S.Container>
+      <S.CloseButton onClick={closeForm}>x</S.CloseButton>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Input
           id={FORM_FIELD.SUBJECT}

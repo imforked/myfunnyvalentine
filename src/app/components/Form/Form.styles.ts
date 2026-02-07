@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  pointer-events: auto;
+`;
 
 export const Form = styled.form``;
 
@@ -13,4 +15,10 @@ export const SubmitButton = styled.button`
   right: -100px;
 `;
 
-export const CloseButton = styled.button``;
+export const CloseButton = styled.button`
+  background: black;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+`;

@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+import { FORM_TYPE } from "../Form/Form.types";
+
 type Coordinates = { x: number; y: number };
 
 type Image = {
@@ -13,11 +16,17 @@ export type TabProps = {
   reveal: boolean;
   canClick: boolean;
   index: number;
+  setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
+  formType: FORM_TYPE;
 };
 
-export type TabsData = Omit<TabProps, "index" | "reveal" | "canClick">[];
+export type TabsData = (Omit<
+  TabProps,
+  "index" | "reveal" | "canClick" | "setActiveForm"
+> & { formType: FORM_TYPE })[];
 
 export type TabsProps = {
   reveal: boolean;
   canClick: boolean;
+  setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
 };

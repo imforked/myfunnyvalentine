@@ -25,6 +25,9 @@ export const Card = () => {
   const [shakeCard, setShakeCard] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<TOOLTIP | null>(null);
   const [playAnimation, setPlayAnimation] = useState<ANIMATION | null>(null);
+  const [activeForm, setActiveForm] = useState<FORM_TYPE | undefined>(
+    undefined
+  );
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -43,6 +46,9 @@ export const Card = () => {
   };
 
   const clickHandler = () => {
+    if (activeForm) {
+      return;
+    }
     if (ignoreNextClickRef.current) {
       ignoreNextClickRef.current = false;
       return;
@@ -90,6 +96,13 @@ export const Card = () => {
     }
   };
 
+  const closeForm = () => {
+    setShowFront(true);
+    setTimeout(() => {
+      setActiveForm(undefined);
+    }, S.FLIP_TIME_IN_MS);
+  };
+
   const Stickers = ({
     isInteractiveStickers,
   }: {
@@ -115,6 +128,7 @@ export const Card = () => {
         onTouchEnd={mouseUpHandler}
         onClick={clickHandler}
         $isBeingTouched={isBeingTouched}
+        $formIsActive={Boolean(activeForm)}
       >
         {!showFront && (
           <S.InteractiveStickersContainer>
@@ -129,11 +143,18 @@ export const Card = () => {
                 <S.FrontContent />
               </S.Front>
 
-              <Tabs reveal={featuresUnlocked} canClick={showFront} />
+              <Tabs
+                reveal={featuresUnlocked}
+                canClick={showFront}
+                setActiveForm={setActiveForm}
+              />
 
               <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
                 <S.BackContent>
-                  <Form variant={FORM_TYPE.SNACK} />
+                  {activeForm && (
+                    <Form variant={FORM_TYPE.SNACK} closeForm={closeForm} />
+                  )}
+
                   <Stickers isInteractiveStickers={false} />
                 </S.BackContent>
               </S.Back>

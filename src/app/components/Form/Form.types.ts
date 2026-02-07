@@ -1,5 +1,6 @@
 export type FormProps = {
   variant: FormType;
+  closeForm: () => void;
 };
 
 export enum FORM_FIELD {

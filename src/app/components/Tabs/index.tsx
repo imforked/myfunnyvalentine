@@ -3,11 +3,15 @@ import Image from "next/image";
 import { TabsProps, TabProps } from "./Tabs.types";
 import { TABS_DATA } from "./Tabs.data";
 
-const clickHandler = () => {
-  console.log("lmao");
-};
-
-const Tab = ({ index, reveal, canClick, coordinates, img }: TabProps) => {
+const Tab = ({
+  index,
+  reveal,
+  canClick,
+  coordinates,
+  img,
+  setActiveForm,
+  formType,
+}: TabProps) => {
   return (
     <S.AnimateContainer
       $coordinates={{ ...coordinates }}
@@ -18,7 +22,7 @@ const Tab = ({ index, reveal, canClick, coordinates, img }: TabProps) => {
         <Image
           onClick={() => {
             if (canClick) {
-              clickHandler();
+              setActiveForm(formType);
             }
           }}
           {...img}
@@ -28,7 +32,7 @@ const Tab = ({ index, reveal, canClick, coordinates, img }: TabProps) => {
   );
 };
 
-export const Tabs = ({ reveal, canClick }: TabsProps) => {
+export const Tabs = ({ reveal, canClick, setActiveForm }: TabsProps) => {
   return TABS_DATA.map((tab, index) => (
     <Tab
       key={`${tab.img.alt}-${index}`}
@@ -37,6 +41,8 @@ export const Tabs = ({ reveal, canClick }: TabsProps) => {
       reveal={reveal}
       canClick={canClick}
       index={index}
+      setActiveForm={setActiveForm}
+      formType={tab.formType}
     />
   ));
 };
