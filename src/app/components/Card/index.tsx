@@ -51,6 +51,9 @@ export const Card = () => {
   };
 
   const mouseDownHandler = () => {
+    if (!showFront) {
+      return;
+    }
     pressTimeoutRef.current = window.setTimeout(() => {
       setIsBeingTouched(true);
 
@@ -58,12 +61,9 @@ export const Card = () => {
         setShakeCard(true);
         ignoreNextClickRef.current = true;
 
-        unlockTimeoutRef.current = window.setTimeout(
-          () => {
-            setFeaturesUnlocked(true);
-          },
-          S.PRESS_ANIMATION_IN_MS + SHAKE_DURATION + TAB_REVEAL_DELAY,
-        );
+        unlockTimeoutRef.current = window.setTimeout(() => {
+          setFeaturesUnlocked(true);
+        }, S.PRESS_ANIMATION_IN_MS + SHAKE_DURATION + TAB_REVEAL_DELAY);
       }, S.PRESS_ANIMATION_IN_MS + SHAKE_DURATION);
     }, PRESS_ANIMATION_DELAY);
   };
