@@ -82,7 +82,6 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
   inset: 0;
   border-radius: ${CARD_BORDER_RADIUS}px;
   backface-visibility: hidden;
-  background-image: url(${front.src});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -98,10 +97,13 @@ const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
       $isBeingTouched ? PRESS_ANIMATION_IN_MS : FLIP_TIME_IN_MS}ms;
 `;
 
-export const Front = styled(Face)``;
+export const Front = styled(Face)`
+  background-image: url(${front.src});
+`;
 
-export const Back = styled(Face)`
+export const Back = styled(Face)<{ $image: string }>`
   transform: rotateY(180deg);
+  background-image: ${({ $image }) => $image && `url(${$image})`};
 `;
 
 const Content = styled.div`

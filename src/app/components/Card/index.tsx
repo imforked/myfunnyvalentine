@@ -13,6 +13,8 @@ import {
   ANIMATION,
 } from "../Sticker/Sticker.types";
 import { FORM_TYPE } from "../Form/Form.types";
+import formImg from "../../../../public/form.png";
+import backImg from "../../../../public/front-1.png";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -149,7 +151,11 @@ export const Card = () => {
                 setActiveForm={setActiveForm}
               />
 
-              <S.Back $showFront={showFront} $isBeingTouched={isBeingTouched}>
+              <S.Back
+                $showFront={showFront}
+                $isBeingTouched={isBeingTouched}
+                $image={activeForm ? formImg.src : backImg.src}
+              >
                 <S.BackContent>
                   {activeForm && (
                     <Form variant={activeForm} closeForm={closeForm} />
