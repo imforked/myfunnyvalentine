@@ -20,6 +20,14 @@ const Tab = ({
     >
       <S.HoverContainer $canPlayHoverAnimation={frontIsActive}>
         <Image
+          src={src.back}
+          alt=""
+          width={1}
+          height={1}
+          style={{ display: "none" }}
+          priority
+        />
+        <Image
           priority
           onClick={() => {
             if (frontIsActive) {
@@ -36,11 +44,7 @@ const Tab = ({
   );
 };
 
-export const Tabs = ({
-  reveal,
-  frontIsActive,
-  setActiveForm,
-}: TabsProps) => {
+export const Tabs = ({ reveal, frontIsActive, setActiveForm }: TabsProps) => {
   return TABS_DATA.map((tab, index) => (
     <Tab
       key={`${tab.img.alt}-${index}`}
