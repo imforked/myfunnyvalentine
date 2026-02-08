@@ -9,12 +9,18 @@ export const Sticker = ({
   index,
   isInteractiveSticker,
   onClick,
+  parrotAudioRef,
 }: StickerProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
   const handlePlay = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
+    if (!parrotAudioRef.current) return;
+
+    try {
+      parrotAudioRef.current.currentTime = 0;
+      parrotAudioRef.current.play().catch((err) => {
+        if (err.name !== "AbortError") console.error(err);
+      });
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -31,7 +37,6 @@ export const Sticker = ({
       }}
     >
       <Image {...img} />
-      <audio ref={audioRef} src="/mmmWAH-sound.mov" />
     </S.Container>
   );
 };

@@ -1,4 +1,5 @@
 import { ImageProps } from "next/image";
+import { RefObject } from "react";
 
 export type StickerCoordinates = {
   x: number;
@@ -11,6 +12,7 @@ export type StickerProps = {
   index: number;
   isInteractiveSticker: boolean;
   onClick: () => void
+  parrotAudioRef: RefObject<HTMLAudioElement | null>
 };
 
 export enum STICKER_ACTION {

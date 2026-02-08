@@ -126,3 +126,24 @@ export const superSpin = keyframes`
   0%   { transform: rotateY(180deg); }
   100% { transform: rotateY(720deg); }
 `;
+
+export const mmmWAH = keyframes`
+  0% {
+    transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+  }
+  15% {
+    transform: translateZ(-80px) rotateX(-4deg) rotateY(4deg);
+  }
+  35% {
+    transform: translateZ(100px) rotateX(4deg) rotateY(-2deg);
+  }
+  50% {
+    transform: translateZ(-20px) rotateX(-1deg) rotateY(1deg);
+  }
+  60% {
+    transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+  }
+`;

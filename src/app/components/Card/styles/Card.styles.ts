@@ -1,11 +1,12 @@
 import { styled, css } from "styled-components";
-import { drift, shake, killCard, hop, superSpin } from "./animations";
+import { drift, shake, killCard, hop, superSpin, mmmWAH } from "./animations";
 import front from "../../../../../public/front-1.png";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
 export const PRESS_ANIMATION_IN_MS = 250;
 export const SUPER_SPIN_ANIMATION_IN_MS = 2000;
+export const MMM_WAH_ANIMATION_IN_MS = 4000;
 
 const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
 
@@ -46,6 +47,19 @@ export const Container = styled.div<{
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const MmmWAHLayer = styled.div<{ $playMmmWAH: boolean }>`
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+
+  ${({ $playMmmWAH }) =>
+    $playMmmWAH &&
+    css`
+      animation: ${mmmWAH} ${MMM_WAH_ANIMATION_IN_MS}ms
+        cubic-bezier(0.25, 1, 0.5, 1);
+    `}
 `;
 
 export const HopLayer = styled.div<{ $hop: boolean }>`

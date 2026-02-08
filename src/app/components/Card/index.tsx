@@ -33,6 +33,7 @@ export const Card = () => {
   const [killCard, setKillCard] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [playSuperSpin, setPlaySuperSping] = useState(false);
+  const [playMmmWAH, setPlayMmmWAH] = useState(false);
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -49,6 +50,8 @@ export const Card = () => {
     shakeTimeoutRef.current = null;
     unlockTimeoutRef.current = null;
   };
+
+  const parrotAudioRef = useRef<HTMLAudioElement>(null);
 
   const clickHandler = () => {
     if (activeForm) {
@@ -86,18 +89,15 @@ export const Card = () => {
   };
 
   const handleStickerAction = (action: StickerAction) => {
-    switch (action.type) {
-      case STICKER_ACTION.OPEN_TOOLTIP:
-        setActiveTooltip(action.tooltipId);
-        break;
+    // Reset the animation so it can replay
+    setPlayMmmWAH(false);
+    setTimeout(() => setPlayMmmWAH(true), 0);
 
-      case STICKER_ACTION.PLAY_ANIMATION:
-        setPlayAnimation(action.animation);
-        break;
-
-      case STICKER_ACTION.NONE:
-      default:
-        break;
+    // Play audio immediately from start
+    if (parrotAudioRef.current) {
+      parrotAudioRef.current.pause(); // stop any ongoing playback
+      parrotAudioRef.current.currentTime = 0; // rewind to start
+      parrotAudioRef.current.play(); // play immediately
     }
   };
 
@@ -108,10 +108,27 @@ export const Card = () => {
     }, S.FLIP_TIME_IN_MS);
   };
 
+  useEffect(() => {
+    const audio = parrotAudioRef.current;
+    if (!audio) return;
+
+    const handleAudioEnd = () => {
+      setPlayMmmWAH(false);
+    };
+
+    audio.addEventListener("ended", handleAudioEnd);
+
+    return () => {
+      audio.removeEventListener("ended", handleAudioEnd);
+    };
+  }, []);
+
   const Stickers = ({
     isInteractiveStickers,
+    parrotAudioRef,
   }: {
     isInteractiveStickers: boolean;
+    parrotAudioRef: React.RefObject<HTMLAudioElement | null>;
   }) =>
     STICKER_CONTEXT.map((sticker, index) => (
       <Sticker
@@ -120,6 +137,7 @@ export const Card = () => {
         index={index}
         isInteractiveSticker={isInteractiveStickers}
         onClick={() => handleStickerAction(sticker.action)}
+        parrotAudioRef={parrotAudioRef}
       />
     ));
 
@@ -135,9 +153,10 @@ export const Card = () => {
         $isBeingTouched={isBeingTouched}
         $formIsActive={Boolean(activeForm)}
       >
+        <audio ref={parrotAudioRef} src="/mmmWAH-sound.mov" />
         {!showFront && (
           <S.InteractiveStickersContainer>
-            <Stickers isInteractiveStickers />
+            <Stickers isInteractiveStickers parrotAudioRef={parrotAudioRef} />
           </S.InteractiveStickersContainer>
         )}
 
@@ -146,49 +165,56 @@ export const Card = () => {
             something out of my control went wrong. just text me.
           </S.ErrorMessage>
         )}
-
-        <S.HopLayer $hop={isSubmitting}>
-          <S.ShakeLayer $shake={shakeCard}>
-            <S.DriftLayer $killCard={killCard}>
-              <S.Flipper $showFront={showFront} $playSuperSpin={playSuperSpin}>
-                <S.Front
+        <S.MmmWAHLayer $playMmmWAH={playMmmWAH}>
+          <S.HopLayer $hop={isSubmitting}>
+            <S.ShakeLayer $shake={shakeCard}>
+              <S.DriftLayer $killCard={killCard}>
+                <S.Flipper
                   $showFront={showFront}
-                  $isBeingTouched={isBeingTouched}
+                  $playSuperSpin={playSuperSpin}
                 >
-                  <S.FrontContent />
-                </S.Front>
+                  <S.Front
+                    $showFront={showFront}
+                    $isBeingTouched={isBeingTouched}
+                  >
+                    <S.FrontContent />
+                  </S.Front>
 
-                <Tabs
-                  reveal={featuresUnlocked}
-                  canClick={showFront}
-                  setActiveForm={setActiveForm}
-                />
+                  <Tabs
+                    reveal={featuresUnlocked}
+                    canClick={showFront}
+                    setActiveForm={setActiveForm}
+                  />
 
-                <S.Back
-                  $showFront={showFront}
-                  $isBeingTouched={isBeingTouched}
-                  $image={activeForm ? formImg.src : backImg.src}
-                >
-                  <S.BackContent>
-                    {activeForm && (
-                      <Form
-                        variant={activeForm}
-                        closeForm={closeForm}
-                        setShakeCard={setShakeCard}
-                        setKillCard={setKillCard}
-                        setIsSubmitting={setIsSubmitting}
-                        setPlaySuperSpin={setPlaySuperSping}
-                        setShowFront={setShowFront}
-                        setActiveForm={setActiveForm}
+                  <S.Back
+                    $showFront={showFront}
+                    $isBeingTouched={isBeingTouched}
+                    $image={activeForm ? formImg.src : backImg.src}
+                  >
+                    <S.BackContent>
+                      {activeForm && (
+                        <Form
+                          variant={activeForm}
+                          closeForm={closeForm}
+                          setShakeCard={setShakeCard}
+                          setKillCard={setKillCard}
+                          setIsSubmitting={setIsSubmitting}
+                          setPlaySuperSpin={setPlaySuperSping}
+                          setShowFront={setShowFront}
+                          setActiveForm={setActiveForm}
+                        />
+                      )}
+                      <Stickers
+                        isInteractiveStickers={false}
+                        parrotAudioRef={parrotAudioRef}
                       />
-                    )}
-                    <Stickers isInteractiveStickers={false} />
-                  </S.BackContent>
-                </S.Back>
-              </S.Flipper>
-            </S.DriftLayer>
-          </S.ShakeLayer>
-        </S.HopLayer>
+                    </S.BackContent>
+                  </S.Back>
+                </S.Flipper>
+              </S.DriftLayer>
+            </S.ShakeLayer>
+          </S.HopLayer>
+        </S.MmmWAHLayer>
       </S.Container>
     </S.Wrapper>
   );
