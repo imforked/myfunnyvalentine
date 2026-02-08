@@ -20,6 +20,7 @@ const Tab = ({
     >
       <S.HoverContainer $canPlayHoverAnimation={canClick}>
         <Image
+          priority
           onClick={() => {
             if (canClick) {
               setActiveForm(formType);
