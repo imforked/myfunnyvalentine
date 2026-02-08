@@ -114,6 +114,8 @@ export const Card = () => {
     setTimeout(() => {
       setActiveForm(undefined);
     }, S.FLIP_TIME_IN_MS);
+
+    flipTabs();
   };
 
   useEffect(() => {
