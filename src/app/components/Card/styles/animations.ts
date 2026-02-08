@@ -90,3 +90,34 @@ export const shake = keyframes`
   }
 `;
 
+export const killCard = keyframes`
+  0% {
+    transform: translate(0, 0)
+      rotateZ(0deg)
+      scale(1);
+  }
+
+  30% {
+    transform: translate(0, 10px)
+      rotateZ(-2deg)
+      scale(0.98);
+  }
+
+  70% {
+    transform: translate(0, 80px)
+      rotateZ(6deg)
+      scale(0.9);
+  }
+
+  100% {
+    transform: translate(0, 3000px)
+      rotateZ(12deg)
+      scale(0.85);
+  }
+`;
+
+export const hop = keyframes`
+  0%, 20%, 50%, 70%, 100% { transform: translateY(0); }
+  10% { transform: translateY(11px); }
+  30% { transform: translateY(11px); }
+`;

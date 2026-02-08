@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as S from "./styles/Card.styles";
 import { Tabs } from "../Tabs";
 import { STICKER_CONTEXT } from "../Sticker/Sticker.context";
@@ -30,6 +30,8 @@ export const Card = () => {
   const [activeForm, setActiveForm] = useState<FORM_TYPE | undefined>(
     undefined
   );
+  const [killCard, setKillCard] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -132,40 +134,57 @@ export const Card = () => {
         $isBeingTouched={isBeingTouched}
         $formIsActive={Boolean(activeForm)}
       >
-        {!showFront && (
+        {/* {!showFront && (
           <S.InteractiveStickersContainer>
             <Stickers isInteractiveStickers />
           </S.InteractiveStickersContainer>
+        )} */}
+
+        {killCard && (
+          <S.ErrorMessage>
+            something out of my control went wrong. just text me.
+          </S.ErrorMessage>
         )}
 
-        <S.ShakeLayer $shake={shakeCard}>
-          <S.DriftLayer>
-            <S.Flipper $showFront={showFront}>
-              <S.Front $showFront={showFront} $isBeingTouched={isBeingTouched}>
-                <S.FrontContent />
-              </S.Front>
+        <S.HopLayer $hop={isSubmitting}>
+          <S.ShakeLayer $shake={shakeCard}>
+            <S.DriftLayer $killCard={killCard}>
+              <S.Flipper $showFront={showFront}>
+                <S.Front
+                  $showFront={showFront}
+                  $isBeingTouched={isBeingTouched}
+                >
+                  <S.FrontContent />
+                </S.Front>
 
-              <Tabs
-                reveal={featuresUnlocked}
-                canClick={showFront}
-                setActiveForm={setActiveForm}
-              />
+                <Tabs
+                  reveal={featuresUnlocked}
+                  canClick={showFront}
+                  setActiveForm={setActiveForm}
+                />
 
-              <S.Back
-                $showFront={showFront}
-                $isBeingTouched={isBeingTouched}
-                $image={activeForm ? formImg.src : backImg.src}
-              >
-                <S.BackContent>
-                  {activeForm && (
-                    <Form variant={activeForm} closeForm={closeForm} />
-                  )}
-                  <Stickers isInteractiveStickers={false} />
-                </S.BackContent>
-              </S.Back>
-            </S.Flipper>
-          </S.DriftLayer>
-        </S.ShakeLayer>
+                <S.Back
+                  $showFront={showFront}
+                  $isBeingTouched={isBeingTouched}
+                  $image={activeForm ? formImg.src : backImg.src}
+                >
+                  <S.BackContent>
+                    {activeForm && (
+                      <Form
+                        variant={activeForm}
+                        closeForm={closeForm}
+                        setShakeCard={setShakeCard}
+                        setKillCard={setKillCard}
+                        setIsSubmitting={setIsSubmitting}
+                      />
+                    )}
+                    {/* <Stickers isInteractiveStickers={false} /> */}
+                  </S.BackContent>
+                </S.Back>
+              </S.Flipper>
+            </S.DriftLayer>
+          </S.ShakeLayer>
+        </S.HopLayer>
       </S.Container>
     </S.Wrapper>
   );

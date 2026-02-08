@@ -1,5 +1,5 @@
 import { styled, css } from "styled-components";
-import { drift, shake } from "./animations";
+import { drift, shake, killCard, hop } from "./animations";
 import front from "../../../../../public/front-1.png";
 
 const CARD_BORDER_RADIUS = 12;
@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   background: #dcd8b0;
+  overflow: hidden;
 `;
 
 export const Container = styled.div<{
@@ -46,10 +47,30 @@ export const Container = styled.div<{
   }
 `;
 
-export const DriftLayer = styled.div`
+export const HopLayer = styled.div<{ $hop: boolean }>`
   width: 100%;
   height: 100%;
-  animation: ${drift} 10s ease-in-out infinite;
+
+  transform-style: preserve-3d;
+
+  ${({ $hop }) =>
+    $hop &&
+    css`
+      animation: ${hop} 1.5s ease-in-out infinite;
+    `}
+`;
+
+export const DriftLayer = styled.div<{ $killCard: boolean }>`
+  width: 100%;
+  height: 100%;
+  animation: ${({ $killCard }) =>
+    $killCard
+      ? css`
+          ${killCard} 1s ease-in forwards
+        `
+      : css`
+          ${drift} 10s ease-in-out infinite
+        `};
   transform-style: preserve-3d;
 `;
 
@@ -121,4 +142,10 @@ export const InteractiveStickersContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 999;
+`;
+
+export const ErrorMessage = styled.h2`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 `;

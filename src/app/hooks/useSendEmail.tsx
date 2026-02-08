@@ -6,34 +6,37 @@ type SendEmailArgs = {
   message: string;
 };
 
+export enum Status {
+  Sending = "sending",
+  Success = "success",
+  Fail = "fail",
+}
+
 export function useSendEmail() {
-  const [status, setStatus] = useState<string>("");
+  const [status, setStatus] = useState<Status | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<unknown>(null);
 
-  const sendEmail = useCallback(
-    async ({ subject, message }: SendEmailArgs) => {
-      setIsLoading(true);
-      setStatus("Sending...");
-      setError(null);
+  const sendEmail = useCallback(async ({ subject, message }: SendEmailArgs) => {
+    setIsLoading(true);
+    setStatus(Status.Sending);
+    setError(null);
 
-      try {
-        await axios.post("/api/send-email", {
-          subject,
-          message,
-        });
+    try {
+      await axios.post("/api/send-email", {
+        subject,
+        message,
+      });
 
-        setStatus("Email sent! 📬");
-      } catch (err) {
-        console.error(err);
-        setError(err);
-        setStatus("Failed to send email ❌");
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    []
-  );
+      setStatus(Status.Success);
+    } catch (err) {
+      console.error(err);
+      setError(err);
+      setStatus(Status.Fail);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   return {
     sendEmail,

@@ -1,6 +1,11 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type FormProps = {
   variant: FormType;
   closeForm: () => void;
+  setShakeCard: Dispatch<SetStateAction<boolean>>;
+  setKillCard: Dispatch<SetStateAction<boolean>>;
+  setIsSubmitting: Dispatch<SetStateAction<boolean>>;
 };
 
 export enum FORM_FIELD {
