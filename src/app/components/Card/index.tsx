@@ -17,6 +17,7 @@ import formImg from "../../../../public/form.png";
 import backImg from "../../../../public/front-1.png";
 import { SuccessThumbsUp } from "../SuccessThumbsUp/SuccessThumbsUp";
 import { useTabsFlip } from "@/app/hooks/useTabsFlip";
+import Image from "next/image";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -198,6 +199,23 @@ export const Card = () => {
                     reveal={featuresUnlocked}
                     frontIsActive={showFrontTabs}
                     setActiveForm={setActiveForm}
+                  />
+
+                  <Image
+                    priority
+                    src={formImg.src}
+                    alt="Cute form"
+                    width={415}
+                    height={609}
+                    style={{ display: "none" }}
+                  />
+                  <Image
+                    priority
+                    src={backImg.src}
+                    alt="Cute message"
+                    width={415}
+                    height={609}
+                    style={{ display: "none" }}
                   />
 
                   <S.Back
