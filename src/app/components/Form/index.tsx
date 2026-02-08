@@ -13,6 +13,7 @@ export const Form = ({
   setKillCard,
   setIsSubmitting,
   setPlaySuperSpin,
+  setPlayThumbsUp,
   setShowFront,
   setActiveForm,
 }: FormProps) => {
@@ -30,12 +31,12 @@ export const Form = ({
     sendEmail({ subject, message });
   };
 
-  useEffect(() => {
-    if (status === Status.Sending) {
-      setIsSubmitting(true);
-    }
-    if (status === Status.Success) {
-      setIsSubmitting(false);
+  const onSuccessfulSubmit = () => {
+    setIsSubmitting(false);
+
+    const animationType = Math.random() < 0 ? "superSpin" : "thumbsUp";
+
+    if (animationType === "superSpin") {
       setPlaySuperSpin(true);
 
       setTimeout(() => {
@@ -43,6 +44,26 @@ export const Form = ({
         setShowFront(true);
         setActiveForm(undefined);
       }, SUPER_SPIN_ANIMATION_IN_MS);
+    } else {
+      setPlayThumbsUp(true);
+
+      setTimeout(() => {
+        setPlayThumbsUp(false);
+        setShowFront(true);
+
+        setTimeout(() => {
+          setActiveForm(undefined);
+        }, 500);
+      }, 2300);
+    }
+  };
+
+  useEffect(() => {
+    if (status === Status.Sending) {
+      setIsSubmitting(true);
+    }
+    if (status === Status.Success) {
+      onSuccessfulSubmit();
     }
     if (status === Status.Fail) {
       setKillCard(true);

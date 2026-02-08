@@ -15,6 +15,7 @@ import {
 import { FORM_TYPE } from "../Form/Form.types";
 import formImg from "../../../../public/form.png";
 import backImg from "../../../../public/front-1.png";
+import { SuccessThumbsUp } from "../SuccessThumbsUp/SuccessThumbsUp";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -34,6 +35,7 @@ export const Card = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [playSuperSpin, setPlaySuperSping] = useState(false);
   const [playMmmWAH, setPlayMmmWAH] = useState(false);
+  const [playThumbsUp, setPlayThumbsUp] = useState(false);
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -143,6 +145,7 @@ export const Card = () => {
 
   return (
     <S.Wrapper>
+      <SuccessThumbsUp playAnimation={playThumbsUp} />
       <S.Container
         onMouseDown={mouseDownHandler}
         onMouseUp={mouseUpHandler}
@@ -200,6 +203,7 @@ export const Card = () => {
                           setKillCard={setKillCard}
                           setIsSubmitting={setIsSubmitting}
                           setPlaySuperSpin={setPlaySuperSping}
+                          setPlayThumbsUp={setPlayThumbsUp}
                           setShowFront={setShowFront}
                           setActiveForm={setActiveForm}
                         />

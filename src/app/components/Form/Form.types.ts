@@ -7,6 +7,7 @@ export type FormProps = {
   setKillCard: Dispatch<SetStateAction<boolean>>;
   setIsSubmitting: Dispatch<SetStateAction<boolean>>;
   setPlaySuperSpin: Dispatch<SetStateAction<boolean>>;
+  setPlayThumbsUp: Dispatch<SetStateAction<boolean>>;
   setShowFront: Dispatch<SetStateAction<boolean>>;
   setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
 };

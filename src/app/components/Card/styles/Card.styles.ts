@@ -11,10 +11,10 @@ export const MMM_WAH_ANIMATION_IN_MS = 4000;
 const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 100%;
   background: #dcd8b0;
   overflow: hidden;

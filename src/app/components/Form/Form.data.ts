@@ -7,7 +7,7 @@ export const FORM_FIELDS: FormFieldDataType = {
   },
   [FORM_TYPE.DICK]: {
     subjectPlaceholder: "🔥🔥🔥🔥🔥",
-    messagePlaceholder: "Come over. I want head.",
+    messagePlaceholder: "Come over. I want it.",
   },
   [FORM_TYPE.SNACK]: {
     subjectPlaceholder: "Eem",
