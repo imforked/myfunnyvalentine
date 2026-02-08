@@ -27,6 +27,8 @@ export const Form = ({
 
   const { sendEmail, status, isLoading, error } = useSendEmail();
 
+  const isButtonDisabled = isSubmitting || status === Status.Success;
+
   const onSubmit = ({ subject, message }: FormValues) => {
     sendEmail({ subject, message });
   };
@@ -65,7 +67,7 @@ export const Form = ({
 
   return (
     <S.Container>
-      <S.CloseButton onClick={closeForm} />
+      <S.CloseButton onClick={closeForm} disabled={isButtonDisabled} />
       <S.Form
         onSubmit={handleSubmit(onSubmit)}
         onInvalid={() => setShakeCard(true)}
@@ -82,7 +84,7 @@ export const Form = ({
           required
           placeholder={formFieldData.messagePlaceholder}
         />
-        <S.SubmitButton type="submit" disabled={isSubmitting} />
+        <S.SubmitButton type="submit" disabled={isButtonDisabled} />
       </S.Form>
     </S.Container>
   );
