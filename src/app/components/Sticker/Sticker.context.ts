@@ -55,12 +55,23 @@ export const STICKER_CONTEXT: StickerContext[] = [
   // },
   {
     img: {
-      src: mmmWAH,
-      alt: "mmmmmWAH!",
-      width: 100,
-      height: 100,
+      src: mmmWAH.src,
+      alt: "mmmWAH!",
+      dimensions: {
+        mobile: {
+          width: 50,
+          height: 50,
+        },
+        desktop: {
+          width: 100,
+          height: 100,
+        },
+      },
     },
-    coordinates: { x: 300, y: 500 },
+    coordinates: {
+      mobile: { x: 200, y: 325 },
+      desktop: { x: 300, y: 500 },
+    },
     action: {
       type: STICKER_ACTION.PLAY_ANIMATION,
       animation: ANIMATION.MMM_WAH,

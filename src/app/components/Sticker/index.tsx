@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import * as S from "./Sticker.styles";
 import { StickerProps } from "./Sticker.types";
-import Image from "next/image";
 
 export const Sticker = ({
   img,
@@ -36,7 +35,13 @@ export const Sticker = ({
         handlePlay();
       }}
     >
-      <Image {...img} />
+      <S.StyledImage
+        src={img.src}
+        alt={img.alt}
+        $dimensions={img.dimensions}
+        width={img.dimensions.mobile.width}
+        height={img.dimensions.mobile.height}
+      />
     </S.Container>
   );
 };

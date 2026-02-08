@@ -1,18 +1,36 @@
-import { ImageProps } from "next/image";
 import { RefObject } from "react";
 
-export type StickerCoordinates = {
+type Coordinates = {
   x: number;
   y: number;
 };
 
+export type StickerCoordinates = {
+  mobile: Coordinates;
+  desktop: Coordinates;
+};
+
+export type ImgDimensions = {
+  width: number;
+  height: number;
+};
+
+type Img = {
+  src: string;
+  alt: string;
+  dimensions: {
+    mobile: ImgDimensions;
+    desktop: ImgDimensions;
+  };
+};
+
 export type StickerProps = {
-  img: ImageProps;
+  img: Img;
   coordinates: StickerCoordinates;
   index: number;
   isInteractiveSticker: boolean;
-  onClick: () => void
-  parrotAudioRef: RefObject<HTMLAudioElement | null>
+  onClick: () => void;
+  parrotAudioRef: RefObject<HTMLAudioElement | null>;
 };
 
 export enum STICKER_ACTION {

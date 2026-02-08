@@ -7,6 +7,8 @@ export const FLIP_TIME_IN_MS = 800;
 export const PRESS_ANIMATION_IN_MS = 250;
 export const SUPER_SPIN_ANIMATION_IN_MS = 2000;
 export const MMM_WAH_ANIMATION_IN_MS = 4000;
+const DESKTOP_CARD_WIDTH = 415;
+const MOBILE_CARD_WIDTH = 262.5;
 
 const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
 
@@ -25,7 +27,7 @@ export const Container = styled.div<{
   $formIsActive: boolean;
 }>`
   position: relative;
-  width: 415px;
+  width: ${DESKTOP_CARD_WIDTH}px;
   height: 609px;
   border-radius: ${CARD_BORDER_RADIUS}px;
   perspective: 900px;
@@ -46,6 +48,11 @@ export const Container = styled.div<{
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: ${MOBILE_CARD_WIDTH}px;
+    height: 385.5px;
   }
 `;
 
@@ -173,7 +180,12 @@ export const InteractiveStickersContainer = styled.div`
 `;
 
 export const ErrorMessage = styled.h2`
+  text-align: right;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  @media screen and (max-width: 500px) {
+    font-size: 14px;
+  }
 `;

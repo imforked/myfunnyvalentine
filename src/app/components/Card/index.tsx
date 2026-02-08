@@ -164,9 +164,11 @@ export const Card = () => {
         )}
 
         {killCard && (
-          <S.ErrorMessage>
-            something out of my control went wrong. just text me.
-          </S.ErrorMessage>
+          <S.ErrorMessage
+            dangerouslySetInnerHTML={{
+              __html: `<span style="white-space:nowrap;">something out of my control went wrong.</span> <br />just text me.`,
+            }}
+          />
         )}
         <S.MmmWAHLayer $playMmmWAH={playMmmWAH}>
           <S.HopLayer $hop={isSubmitting}>
