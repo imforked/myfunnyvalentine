@@ -4,7 +4,7 @@ import { FORM_TYPE } from "../Form/Form.types";
 type Coordinates = { x: number; y: number };
 
 type Image = {
-  src: string;
+  src: { front: string; back: string };
   alt: string;
   width: number;
   height: number;
@@ -14,7 +14,7 @@ export type TabProps = {
   coordinates: Coordinates;
   img: Image;
   reveal: boolean;
-  canClick: boolean;
+  frontIsActive: boolean;
   index: number;
   setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
   formType: FORM_TYPE;
@@ -22,11 +22,11 @@ export type TabProps = {
 
 export type TabsData = (Omit<
   TabProps,
-  "index" | "reveal" | "canClick" | "setActiveForm"
+  "index" | "reveal" | "frontIsActive" | "setActiveForm"
 > & { formType: FORM_TYPE })[];
 
 export type TabsProps = {
   reveal: boolean;
-  canClick: boolean;
+  frontIsActive: boolean;
   setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
 };

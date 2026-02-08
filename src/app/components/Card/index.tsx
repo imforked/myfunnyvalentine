@@ -16,6 +16,7 @@ import { FORM_TYPE } from "../Form/Form.types";
 import formImg from "../../../../public/form.png";
 import backImg from "../../../../public/front-1.png";
 import { SuccessThumbsUp } from "../SuccessThumbsUp/SuccessThumbsUp";
+import { useTabsFlip } from "@/app/hooks/useTabsFlip";
 
 const PRESS_ANIMATION_DELAY = 250;
 const SHAKE_DURATION = 500;
@@ -36,12 +37,18 @@ export const Card = () => {
   const [playSuperSpin, setPlaySuperSping] = useState(false);
   const [playMmmWAH, setPlayMmmWAH] = useState(false);
   const [playThumbsUp, setPlayThumbsUp] = useState(false);
+  // const [ setShowFrontTabs] = useState(true);
+  const [backCardTilt, setBackCardTilt] = useState("0deg");
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
   const unlockTimeoutRef = useRef<number | null>(null);
 
   const ignoreNextClickRef = useRef(false);
+
+  const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
+
+  const { showFrontTabs, flipTabs } = useTabsFlip(S.FLIP_TIME_IN_MS / 3);
 
   const clearAllTimeouts = () => {
     if (pressTimeoutRef.current) clearTimeout(pressTimeoutRef.current);
@@ -56,14 +63,15 @@ export const Card = () => {
   const parrotAudioRef = useRef<HTMLAudioElement>(null);
 
   const clickHandler = () => {
-    if (activeForm) {
-      return;
-    }
+    if (activeForm) return;
     if (ignoreNextClickRef.current) {
       ignoreNextClickRef.current = false;
       return;
     }
+
     setShowFront((prev) => !prev);
+    setBackCardTilt(`${randomTilt()}deg`);
+    flipTabs();
   };
 
   const mouseDownHandler = () => {
@@ -91,15 +99,13 @@ export const Card = () => {
   };
 
   const handleStickerAction = (action: StickerAction) => {
-    // Reset the animation so it can replay
     setPlayMmmWAH(false);
     setTimeout(() => setPlayMmmWAH(true), 0);
 
-    // Play audio immediately from start
     if (parrotAudioRef.current) {
-      parrotAudioRef.current.pause(); // stop any ongoing playback
-      parrotAudioRef.current.currentTime = 0; // rewind to start
-      parrotAudioRef.current.play(); // play immediately
+      parrotAudioRef.current.pause();
+      parrotAudioRef.current.currentTime = 0;
+      parrotAudioRef.current.play();
     }
   };
 
@@ -177,6 +183,7 @@ export const Card = () => {
                 <S.Flipper
                   $showFront={showFront}
                   $playSuperSpin={playSuperSpin}
+                  $tilt={backCardTilt}
                 >
                   <S.Front
                     $showFront={showFront}
@@ -187,7 +194,7 @@ export const Card = () => {
 
                   <Tabs
                     reveal={featuresUnlocked}
-                    canClick={showFront}
+                    frontIsActive={showFrontTabs}
                     setActiveForm={setActiveForm}
                   />
 
@@ -201,6 +208,7 @@ export const Card = () => {
                         <Form
                           variant={activeForm}
                           closeForm={closeForm}
+                          flipTabs={flipTabs}
                           setShakeCard={setShakeCard}
                           setKillCard={setKillCard}
                           setIsSubmitting={setIsSubmitting}

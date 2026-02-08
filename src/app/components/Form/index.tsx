@@ -4,11 +4,11 @@ import { FormValues, FORM_FIELD, FormProps } from "./Form.types";
 import { useSendEmail, Status } from "@/app/hooks/useSendEmail";
 import { FORM_FIELDS } from "./Form.data";
 import { useEffect } from "react";
-import { SUPER_SPIN_ANIMATION_IN_MS } from "../Card/styles/Card.styles";
 
 export const Form = ({
   variant,
   closeForm,
+  flipTabs,
   setShakeCard,
   setKillCard,
   setIsSubmitting,
@@ -36,21 +36,13 @@ export const Form = ({
 
     const animationType = Math.random() < 0 ? "superSpin" : "thumbsUp";
 
-    if (animationType === "superSpin") {
-      setPlaySuperSpin(true);
-
-      setTimeout(() => {
-        setPlaySuperSpin(false);
-        setShowFront(true);
-        setActiveForm(undefined);
-      }, SUPER_SPIN_ANIMATION_IN_MS);
-    } else {
+    if (animationType === "thumbsUp") {
       setPlayThumbsUp(true);
 
       setTimeout(() => {
         setPlayThumbsUp(false);
         setShowFront(true);
-
+        flipTabs();
         setTimeout(() => {
           setActiveForm(undefined);
         }, 500);

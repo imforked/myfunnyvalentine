@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 export type FormProps = {
   variant: FormType;
   closeForm: () => void;
+  flipTabs: () => void;
   setShakeCard: Dispatch<SetStateAction<boolean>>;
   setKillCard: Dispatch<SetStateAction<boolean>>;
   setIsSubmitting: Dispatch<SetStateAction<boolean>>;

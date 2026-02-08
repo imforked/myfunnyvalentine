@@ -6,9 +6,9 @@ import { TABS_DATA } from "./Tabs.data";
 const Tab = ({
   index,
   reveal,
-  canClick,
+  frontIsActive,
   coordinates,
-  img,
+  img: { src, alt, width, height },
   setActiveForm,
   formType,
 }: TabProps) => {
@@ -18,29 +18,36 @@ const Tab = ({
       $index={index}
       $playAnimation={reveal}
     >
-      <S.HoverContainer $canPlayHoverAnimation={canClick}>
+      <S.HoverContainer $canPlayHoverAnimation={frontIsActive}>
         <Image
           priority
           onClick={() => {
-            if (canClick) {
+            if (frontIsActive) {
               setActiveForm(formType);
             }
           }}
-          {...img}
+          src={frontIsActive ? src.front : src.back}
+          alt={alt}
+          width={width}
+          height={height}
         />
       </S.HoverContainer>
     </S.AnimateContainer>
   );
 };
 
-export const Tabs = ({ reveal, canClick, setActiveForm }: TabsProps) => {
+export const Tabs = ({
+  reveal,
+  frontIsActive,
+  setActiveForm,
+}: TabsProps) => {
   return TABS_DATA.map((tab, index) => (
     <Tab
       key={`${tab.img.alt}-${index}`}
       img={tab.img}
       coordinates={tab.coordinates}
       reveal={reveal}
-      canClick={canClick}
+      frontIsActive={frontIsActive}
       index={index}
       setActiveForm={setActiveForm}
       formType={tab.formType}

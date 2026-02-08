@@ -10,8 +10,6 @@ export const MMM_WAH_ANIMATION_IN_MS = 4000;
 const DESKTOP_CARD_WIDTH = 415;
 const MOBILE_CARD_WIDTH = 262.5;
 
-const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
-
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -111,6 +109,7 @@ export const ShakeLayer = styled.div<{ $shake: boolean }>`
 export const Flipper = styled.div<{
   $showFront: boolean;
   $playSuperSpin?: boolean;
+  $tilt: string;
 }>`
   position: relative;
   width: 100%;
@@ -125,12 +124,12 @@ export const Flipper = styled.div<{
       animation: ${superSpin} 1.5s ease-in-out forwards;
     `}
 
-  transform: ${({ $showFront, $playSuperSpin }) =>
+  transform: ${({ $showFront, $playSuperSpin, $tilt }) =>
     $playSuperSpin
       ? undefined
       : $showFront
       ? "rotateY(0deg)"
-      : `rotateY(180deg) rotateX(2deg) rotateZ(${randomTilt()}deg)`};
+      : `rotateY(180deg) rotateX(2deg) rotateZ(${$tilt})`};
 `;
 
 const Face = styled.div<{ $showFront: boolean; $isBeingTouched: boolean }>`
