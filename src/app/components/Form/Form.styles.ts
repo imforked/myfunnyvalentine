@@ -24,6 +24,17 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    -webkit-text-fill-color: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &::placeholder {
+    color: #7a7f87d9;
+    font-weight: 200;
+  }
 `;
 
 export const TextArea = styled.textarea`
@@ -40,6 +51,17 @@ export const TextArea = styled.textarea`
 
   &:focus {
     outline: none;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    -webkit-text-fill-color: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  &::placeholder {
+    color: #7a7f87d9;
+    font-weight: 200;
   }
 `;
 
