@@ -1,10 +1,11 @@
 import { styled, css } from "styled-components";
-import { drift, shake, killCard, hop } from "./animations";
+import { drift, shake, killCard, hop, superSpin } from "./animations";
 import front from "../../../../../public/front-1.png";
 
 const CARD_BORDER_RADIUS = 12;
 export const FLIP_TIME_IN_MS = 800;
 export const PRESS_ANIMATION_IN_MS = 250;
+export const SUPER_SPIN_ANIMATION_IN_MS = 2000;
 
 const randomTilt = (max = 5) => (Math.random() * max * 2 - max).toFixed(2);
 
@@ -86,14 +87,27 @@ export const ShakeLayer = styled.div<{ $shake: boolean }>`
   transform-style: preserve-3d;
 `;
 
-export const Flipper = styled.div<{ $showFront: boolean }>`
+export const Flipper = styled.div<{
+  $showFront: boolean;
+  $playSuperSpin?: boolean;
+}>`
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform ${FLIP_TIME_IN_MS}ms;
-  transform: ${({ $showFront }) =>
-    $showFront
+  transition: ${({ $playSuperSpin }) =>
+    $playSuperSpin ? "none" : `transform ${FLIP_TIME_IN_MS}ms`};
+
+  ${({ $playSuperSpin }) =>
+    $playSuperSpin &&
+    css`
+      animation: ${superSpin} 1.5s ease-in-out forwards;
+    `}
+
+  transform: ${({ $showFront, $playSuperSpin }) =>
+    $playSuperSpin
+      ? undefined
+      : $showFront
       ? "rotateY(0deg)"
       : `rotateY(180deg) rotateX(2deg) rotateZ(${randomTilt()}deg)`};
 `;

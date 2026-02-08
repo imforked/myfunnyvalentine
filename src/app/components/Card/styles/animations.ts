@@ -121,3 +121,8 @@ export const hop = keyframes`
   10% { transform: translateY(11px); }
   30% { transform: translateY(11px); }
 `;
+
+export const superSpin = keyframes`
+  0%   { transform: rotateY(180deg); }
+  100% { transform: rotateY(720deg); }
+`;

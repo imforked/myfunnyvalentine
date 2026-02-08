@@ -32,6 +32,7 @@ export const Card = () => {
   );
   const [killCard, setKillCard] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [playSuperSpin, setPlaySuperSping] = useState(false);
 
   const pressTimeoutRef = useRef<number | null>(null);
   const shakeTimeoutRef = useRef<number | null>(null);
@@ -149,7 +150,7 @@ export const Card = () => {
         <S.HopLayer $hop={isSubmitting}>
           <S.ShakeLayer $shake={shakeCard}>
             <S.DriftLayer $killCard={killCard}>
-              <S.Flipper $showFront={showFront}>
+              <S.Flipper $showFront={showFront} $playSuperSpin={playSuperSpin}>
                 <S.Front
                   $showFront={showFront}
                   $isBeingTouched={isBeingTouched}
@@ -176,6 +177,9 @@ export const Card = () => {
                         setShakeCard={setShakeCard}
                         setKillCard={setKillCard}
                         setIsSubmitting={setIsSubmitting}
+                        setPlaySuperSpin={setPlaySuperSping}
+                        setShowFront={setShowFront}
+                        setActiveForm={setActiveForm}
                       />
                     )}
                     {/* <Stickers isInteractiveStickers={false} /> */}

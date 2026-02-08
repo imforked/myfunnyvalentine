@@ -4,6 +4,7 @@ import { FormValues, FORM_FIELD, FormProps } from "./Form.types";
 import { useSendEmail, Status } from "@/app/hooks/useSendEmail";
 import { FORM_FIELDS } from "./Form.data";
 import { useEffect } from "react";
+import { SUPER_SPIN_ANIMATION_IN_MS } from "../Card/styles/Card.styles";
 
 export const Form = ({
   variant,
@@ -11,6 +12,9 @@ export const Form = ({
   setShakeCard,
   setKillCard,
   setIsSubmitting,
+  setPlaySuperSpin,
+  setShowFront,
+  setActiveForm,
 }: FormProps) => {
   const {
     register,
@@ -32,6 +36,13 @@ export const Form = ({
     }
     if (status === Status.Success) {
       setIsSubmitting(false);
+      setPlaySuperSpin(true);
+
+      setTimeout(() => {
+        setPlaySuperSpin(false);
+        setShowFront(true);
+        setActiveForm(undefined);
+      }, SUPER_SPIN_ANIMATION_IN_MS);
     }
     if (status === Status.Fail) {
       setKillCard(true);

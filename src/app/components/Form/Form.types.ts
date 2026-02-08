@@ -6,6 +6,9 @@ export type FormProps = {
   setShakeCard: Dispatch<SetStateAction<boolean>>;
   setKillCard: Dispatch<SetStateAction<boolean>>;
   setIsSubmitting: Dispatch<SetStateAction<boolean>>;
+  setPlaySuperSpin: Dispatch<SetStateAction<boolean>>;
+  setShowFront: Dispatch<SetStateAction<boolean>>;
+  setActiveForm: Dispatch<SetStateAction<FORM_TYPE | undefined>>;
 };
 
 export enum FORM_FIELD {
