@@ -135,11 +135,11 @@ export const Card = () => {
         $isBeingTouched={isBeingTouched}
         $formIsActive={Boolean(activeForm)}
       >
-        {/* {!showFront && (
+        {!showFront && (
           <S.InteractiveStickersContainer>
             <Stickers isInteractiveStickers />
           </S.InteractiveStickersContainer>
-        )} */}
+        )}
 
         {killCard && (
           <S.ErrorMessage>
@@ -182,7 +182,7 @@ export const Card = () => {
                         setActiveForm={setActiveForm}
                       />
                     )}
-                    {/* <Stickers isInteractiveStickers={false} /> */}
+                    <Stickers isInteractiveStickers={false} />
                   </S.BackContent>
                 </S.Back>
               </S.Flipper>

@@ -17,42 +17,42 @@ type StickerContext = Omit<
 };
 
 export const STICKER_CONTEXT: StickerContext[] = [
-  {
-    img: {
-      src: love,
-      alt: "Literally us",
-      width: 75,
-      height: 69.6,
-    },
-    coordinates: { x: 0, y: 80 },
-    action: {
-      type: STICKER_ACTION.NONE,
-    },
-  },
-  {
-    img: {
-      src: snack,
-      alt: "Reptilian desire",
-      width: 75,
-      height: 76.5,
-    },
-    coordinates: { x: 340, y: 40 },
-    action: {
-      type: STICKER_ACTION.NONE,
-    },
-  },
-  {
-    img: {
-      src: dick,
-      alt: "My queeeeeennnn",
-      width: 75,
-      height: 111.5,
-    },
-    coordinates: { x: 40, y: 440 },
-    action: {
-      type: STICKER_ACTION.NONE,
-    },
-  },
+  // {
+  //   img: {
+  //     src: love,
+  //     alt: "Literally us",
+  //     width: 75,
+  //     height: 69.6,
+  //   },
+  //   coordinates: { x: 0, y: 80 },
+  //   action: {
+  //     type: STICKER_ACTION.NONE,
+  //   },
+  // },
+  // {
+  //   img: {
+  //     src: snack,
+  //     alt: "Reptilian desire",
+  //     width: 75,
+  //     height: 76.5,
+  //   },
+  //   coordinates: { x: 340, y: 40 },
+  //   action: {
+  //     type: STICKER_ACTION.NONE,
+  //   },
+  // },
+  // {
+  //   img: {
+  //     src: dick,
+  //     alt: "My queeeeeennnn",
+  //     width: 75,
+  //     height: 111.5,
+  //   },
+  //   coordinates: { x: 40, y: 440 },
+  //   action: {
+  //     type: STICKER_ACTION.NONE,
+  //   },
+  // },
   {
     img: {
       src: mmmWAH,
