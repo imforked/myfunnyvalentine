@@ -34,7 +34,7 @@ export const STICKER_CONTEXT: StickerContext[] = [
     },
     coordinates: {
       mobile: { x: 200, y: 325 },
-      desktop: { x: 300, y: 500 },
+      desktop: { x: 290, y: 495 },
     },
     action: {
       type: STICKER_ACTION.PLAY_ANIMATION,

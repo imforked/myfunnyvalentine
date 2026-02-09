@@ -14,7 +14,7 @@ import {
 } from "../Sticker/Sticker.types";
 import { FORM_TYPE } from "../Form/Form.types";
 import formImg from "../../../../public/form.png";
-import backImg from "../../../../public/front-1.png";
+import backImg from "../../../../public/back.png";
 import { SuccessThumbsUp } from "../SuccessThumbsUp/SuccessThumbsUp";
 import { useTabsFlip } from "@/app/hooks/useTabsFlip";
 import Image from "next/image";
