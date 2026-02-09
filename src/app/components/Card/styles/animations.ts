@@ -140,7 +140,7 @@ export const mmmWAH = keyframes`
   50% {
     transform: translateZ(-20px) rotateX(-1deg) rotateY(1deg);
   }
-  60% {
+  80% {
     transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
   }
   100% {

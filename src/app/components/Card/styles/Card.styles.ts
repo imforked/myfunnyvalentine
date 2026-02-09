@@ -63,7 +63,7 @@ export const MmmWAHLayer = styled.div<{ $playMmmWAH: boolean }>`
     $playMmmWAH &&
     css`
       animation: ${mmmWAH} ${MMM_WAH_ANIMATION_IN_MS}ms
-        cubic-bezier(0.25, 1, 0.5, 1);
+        cubic-bezier(0.25, 0.9, 0.5, 1);
     `}
 `;
 
