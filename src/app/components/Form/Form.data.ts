@@ -12,6 +12,10 @@ export const FORM_FIELDS: FormFieldDataType = {
   [FORM_TYPE.SNACK]: {
     subjectPlaceholder: "Eem",
     messagePlaceholder: `(1) Massaman Curry w/ Smoked Lamb Shoulder
-(1) Charred Carrot Salad`,
+(1) Charred Carrot Salad
+
+Send to:
+1538 SE Hawthorne Blvd
+Portland, OR 97214`,
   },
 };
