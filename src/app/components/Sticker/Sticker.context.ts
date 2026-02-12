@@ -23,8 +23,8 @@ export const STICKER_CONTEXT: StickerContext[] = [
       alt: "mmmWAH!",
       dimensions: {
         mobile: {
-          width: 50,
-          height: 50,
+          width: 75,
+          height: 75,
         },
         desktop: {
           width: 100,
@@ -33,7 +33,7 @@ export const STICKER_CONTEXT: StickerContext[] = [
       },
     },
     coordinates: {
-      mobile: { x: 200, y: 325 },
+      mobile: { x: 175, y: 305 },
       desktop: { x: 290, y: 495 },
     },
     action: {
